@@ -1,0 +1,12 @@
+{% extends "recipemanager/layout.html" %} {% load static %}
+{% block body %}
+    <h1>
+        Add Recipe
+    </h1>
+    <div class="recipe-form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+    </div>
+    {% endblock %}

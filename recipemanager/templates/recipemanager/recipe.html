@@ -1,0 +1,9 @@
+{% extends "recipemanager/layout.html" %} {% load static %}
+{% block body %}
+    <div class="container">
+        <a class="a-link" href="{% url 'all-recipe' %}">All Recipe</a>
+        <a class="a-link" href="{% url 'available-recipe' %}">Available Recipe </a>
+        <a class="a-link" href="{% url 'add-recipe' %}">Add Recipe</a>
+        <a class="a-link" href="{% url 'index' %}">Home</a>
+    </div>
+{% endblock %}

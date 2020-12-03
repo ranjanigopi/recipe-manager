@@ -1,5 +1,46 @@
-.add-ingredient {
-    margin: auto;
-    width: 50%;
+.body{
+    font-family: "MV Boli";
+    font-size: xx-large;
+}
+
+.container {
+    display: flex;
+    /*flex-wrap: wrap;*/
+    padding: 50px;
+    margin: 100px 50px;
+}
+
+.a-link
+{
+    display: inline-block;
+    padding: 75px;
+    margin:30px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.add-pantryitem {
+    padding:50px;
+}
+
+.add-pantryitem-form {
+    margin:50px;
+}
+
+
+/*pantry page*/
+.pantry {
+    border:1px solid black;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px;
+    text-align: center;
+}
+
+.pantry-table {
 
 }

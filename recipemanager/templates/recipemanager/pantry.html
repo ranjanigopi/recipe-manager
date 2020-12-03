@@ -1,0 +1,19 @@
+{% extends "recipemanager/layout.html" %} {% load static %}
+ <link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
+{% block body %}
+    <div class="pantry">
+        <h2>Pantry Items</h2>
+        <div>
+            {% for item in items %}
+                {{ item.item }}
+                {{ item.quantity}}
+            <br>
+            {% endfor %}
+
+        </div>
+        <p>[Solids in gm and Liquids in ml]</p>
+    </div>
+    <div>
+        <a href="{% url 'index' %}">Home</a>
+    </div>
+{% endblock %}

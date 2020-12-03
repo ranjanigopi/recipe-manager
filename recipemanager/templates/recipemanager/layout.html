@@ -15,22 +15,13 @@
     <div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">All Recipe</a>
+                <a class="nav-link" href="{% url 'ingredient' %}">Ingredient</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Available ingredients</a>
+                <a class="nav-link" href="{% url 'recipe' %}">Recipe</a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_ingredient' %}">Add ingredients</a>
-            </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#">Add recipe</a>
-            </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#">Ingredients to buy</a>
-            </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#">Available recipe</a>
+                <a class="nav-link" href="{% url 'shopping-list' %}">Shopping List</a>
             </li>
         </ul>
     </div>
