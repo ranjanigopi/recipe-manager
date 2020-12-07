@@ -1,3 +1,22 @@
 .recipe-form {
+    padding: 50px;
+    text-align: center;
+}
 
+.row {
+    margin-bottom: 30px;
+}
+
+.text {
+    line-height: 2em;
+    width: 300px;
+}
+
+.input {
+    width: 600px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+button {
+    margin-bottom: 30px;
 }

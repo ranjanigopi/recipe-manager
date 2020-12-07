@@ -1,6 +1,5 @@
 .body{
     font-family: "MV Boli";
-    font-size: xx-large;
 }
 
 .container {
@@ -39,8 +38,4 @@ h1 {
     padding: 40px;
     margin: 20px;
     text-align: center;
-}
-
-.pantry-table {
-
 }

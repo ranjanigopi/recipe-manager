@@ -1,12 +1,64 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
+    <link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
     <h1>
         Add Recipe
     </h1>
+
     <div class="recipe-form">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
+
+        <div class="row">
+            <label class="text">Name</label>
+            <input type="text" class="input" id="recipe-name" placeholder="Enter recipe name">
+        </div>
+        <div class="row">
+            <label class="text">Image url</label>
+            <input type="text" class="input" id="image" placeholder="Enter recipe image url">
+        </div>
+        <ul id="ingredients-list">
+
+        </ul>
+        <div class="row">
+            <label class="text">Ingredients</label>
+            <input type="text" class="input" id="ingredient" placeholder="Enter Ingredient">
+        </div>
+        <div class="row">
+            <label class="text">Quantity</label>
+            <input type="text" class="input" id="quantity" placeholder="Enter ingredient quantity">
+        </div>
+        <div class="row">
+            <label class="text">Unit</label>
+            <select id="unit" class="input" required>
+                <option disabled selected>Select unit</option>
+                {% for u in units %}
+                    <option value="{{ u.id }}">{{ u.unit }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-outline-primary add-ingredient" onclick="addIngredient()">Add Next Ingredient
+        </button>
+        <div class="row">
+            <label class="text"> Cooking Time</label>
+            <input type="number" class="input" placeholder="Enter cooking time in minutes">
+        </div>
+        <ul id="steps">
+
+        </ul>
+        <div class="row">
+            <label class="text"> Step Number</label>
+            <input type="number" class="input" id="step-no" placeholder="Enter Step number">
+        </div>
+        <div class="row">
+            <label class="text"> Step Name</label>
+            <input type="text" class="input" id="step-name" placeholder="Enter the step name">
+        </div>
+        <div class="row">
+            <label class="text">Procedure</label>
+            <textarea class="input" id="step-procedure" placeholder="Enter procedure"></textarea>
+        </div>
+        <button class="btn btn-outline-primary add-step" onclick="addStep()">Add Next Step</button>
+        <button class="btn btn-outline-primary" onclick="saveRecipe()">Submit</button>
+        <button class="btn btn-outline-primary">Cancel</button>
     </div>
-    {% endblock %}
+    <script src="{% static "recipemanager/recipe.js" %}"></script>
+{% endblock %}

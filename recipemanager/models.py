@@ -36,13 +36,14 @@ class Pantry(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=75)
+    image = models.URLField(default=None)
 
     def __str__(self):
         return f"Recipe: {self.name}"
 
 
 class Step(models.Model):
-    recipe = models.ForeignKey(Recipe,on_delete=models.SET_NULL, null=True, blank=True, related_name="recipe_id")
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE, null=True, blank=True, related_name="recipe_id")
     order = models.IntegerField(default=0)
     name = models.CharField(max_length=75)
     description = models.TextField(max_length=1000)
@@ -63,7 +64,7 @@ class ShoppingList(models.Model):
 
 
 class Ingredient(models.Model):
-    recipe = models.ForeignKey(Recipe,on_delete=models.SET_NULL,null=True,blank=True,related_name="ingredient_recipe_id")
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,null=True,blank=True,related_name="ingredient_recipe_id")
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True, related_name="ingredient_item_id")
     quantity = models.IntegerField(default=0)
     unit = models.ForeignKey(Unit,on_delete=models.SET_NULL, null=True, blank=True,related_name="ingredient_unit_id")
