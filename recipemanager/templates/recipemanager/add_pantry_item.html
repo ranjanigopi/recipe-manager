@@ -3,14 +3,13 @@
      <h1>
          Add Ingredients
      </h1>
-    <div class="add-pantryitem">
-        <form class="add-pantryitem-form" method="post">
+    <div class="add-pantry-item">
+        <form class="add-pantry-item-form" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-
             <div>
-                <button type="submit" class="btn btn-outline-primary">Post</button>
-                <button type="submit" class="btn btn-outline-secondary" onclick="">Cancel</button>
+                <button type="submit" class="btn btn-outline-primary" name="action" value="create">Create</button>
+                <button type="submit" class="btn btn-link" name="action" value="cancel">Cancel</button>
             </div>
         </form>
     </div>

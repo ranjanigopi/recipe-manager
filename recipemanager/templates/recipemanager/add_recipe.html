@@ -57,8 +57,10 @@
             <textarea class="input" id="step-procedure" placeholder="Enter procedure"></textarea>
         </div>
         <button class="btn btn-outline-primary add-step" onclick="addStep()">Add Next Step</button>
-        <button class="btn btn-outline-primary" onclick="saveRecipe()">Submit</button>
-        <button class="btn btn-outline-primary">Cancel</button>
+        <div class="row">
+            <button class="btn btn-outline-primary" onclick="saveRecipe()">Submit</button>
+            <button class="btn btn-link" onclick="cancelRecipe()">Cancel</button>
+        </div>
     </div>
     <script src="{% static "recipemanager/recipe.js" %}"></script>
 {% endblock %}

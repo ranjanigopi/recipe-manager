@@ -31,7 +31,7 @@ class Pantry(models.Model):
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Added {self.quantity} of {self.item}"
+        return f"{self.item} - {self.quantity}"
 
 
 class Recipe(models.Model):

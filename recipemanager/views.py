@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .form.AddPantryItem import AddPantryItem
 from .models import Unit, Item, ShoppingList, Ingredient, Step, Recipe, Pantry
-import json
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
+
+import json
 
 
 # Create your views here.
@@ -35,7 +37,10 @@ def pantry(request):
 def add_pantry_item(request):
     form = AddPantryItem(request.POST or None)
     if request.method == "POST":
-        if form.is_valid():
+        action = request.POST.get("action")
+        if action == "cancel":
+            return HttpResponseRedirect(reverse("pantry"))
+        if action == "create" and form.is_valid():
             name = form.cleaned_data["Name"]
             quantity = form.cleaned_data["Quantity"]
             unit = form.cleaned_data["Unit"]
@@ -47,7 +52,10 @@ def add_pantry_item(request):
 
 
 def all_recipe(request):
-    return render(request, "recipemanager/index.html")
+    recipes = Recipe.objects.all()
+    return render(request, "recipemanager/all_recipe.html", {
+        "recipes": recipes
+    })
 
 
 def available_recipe(request):
@@ -103,4 +111,5 @@ def save_recipe(request):
         for step in steps:
             s = Step(order=step['stepNumber'], name=step['stepName'], description=step['stepProcedure'], recipe=r)
             s.save()
-    return HttpResponse(status=204)
+        return HttpResponse(status=204)
+    return HttpResponse(status=400)

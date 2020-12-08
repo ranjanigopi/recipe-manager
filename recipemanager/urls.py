@@ -19,6 +19,4 @@ urlpatterns = [
     path('recipe/available', views.available_recipe, name="available-recipe"),
     path('recipe/add', views.add_recipe, name="add-recipe"),
     path('recipe/save', views.save_recipe, name="save-recipe")
-
-
 ]

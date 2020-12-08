@@ -1,0 +1,22 @@
+{% extends "recipemanager/layout.html" %} {% load static %}
+{% block body %}
+    <link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
+    <h1>
+        All Recipes
+    </h1>
+    <article class="recipe-container">
+        {% for recipe in recipes %}
+            <div class="recipe">
+                <a href="#">
+                    <div class="recipe-name">
+                        <h2>{{ recipe.name }}</h2>
+                    </div>
+                    <div class="image-container">
+                        <img class="recipe-image" src="{{ recipe.image }}">
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </article>
+
+{% endblock %}
