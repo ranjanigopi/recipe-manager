@@ -7,6 +7,7 @@ const stepName = document.getElementById("step-name");
 const stepProcedure = document.getElementById('step-procedure');
 const steps = document.getElementById('steps');
 
+
 const ingredientList = [];
 const stepList = [];
 
@@ -74,6 +75,7 @@ function saveRecipe() {
         body: JSON.stringify({
             name: document.getElementById('recipe-name').value,
             image: document.getElementById('image').value,
+            time: document.getElementById('cooking-time').value,
             ingredients: ingredientList,
             steps: stepList
         })
@@ -88,3 +90,4 @@ function saveRecipe() {
 function cancelRecipe() {
     redirectToAllRecipes();
 }
+

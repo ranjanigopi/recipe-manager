@@ -37,6 +37,7 @@ class Pantry(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=75)
     image = models.URLField(default=None)
+    time = models.IntegerField(default=0)
 
     def __str__(self):
         return f"Recipe: {self.name}"

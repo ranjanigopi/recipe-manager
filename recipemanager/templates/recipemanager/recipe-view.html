@@ -1,0 +1,33 @@
+{% extends "recipemanager/layout.html" %} {% load static %}
+{% block body %}
+    <link href="{% static 'recipemanager/view-recipe.css' %}" rel="stylesheet">
+    <h1>{{ recipe.name }}</h1>
+    <div class="recipe-view-container">
+        <div class="img-container">
+            <img class="recipe-image" src="{{ recipe.image }}" alt="Rava Kesari image">
+        </div>
+        <div class="ingredient">
+            <p>Ingredients needed</p>
+            <ul>
+                {% for ingredient in ingredients %}
+                    <li>{{ ingredient.item.name }} - {{ ingredient.quantity }} {{ ingredient.unit }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a class="btn btn-primary btn-cook" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
+        <p class="time">Cooking Time: {{ recipe.time }}</p>
+    </div>
+    <div class="procedure">
+        <p>Procedure</p>
+        <ul>
+            {% for step in steps %}
+                <li>{{ step.order }}. {{ step.name }}</li>
+                <div>{{ step.description }}</div>
+            {% endfor %}
+        </ul>
+
+        <div class="home">
+            <a href="{% url 'all-recipe' %}">Back to Recipe</a>
+        </div>
+    </div>
+{% endblock %}

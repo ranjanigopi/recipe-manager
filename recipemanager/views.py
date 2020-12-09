@@ -15,15 +15,15 @@ def index(request):
     return render(request, "recipemanager/index.html")
 
 
-def ingredient(request):
+def ingredient_menu(request):
     return render(request, "recipemanager/ingredient.html")
 
 
-def recipe(request):
+def recipe_menu(request):
     return render(request, "recipemanager/recipe.html")
 
 
-def shoppinglist(request):
+def shoppinglist_menu(request):
     return render(request, "recipemanager/shoppinglist.html")
 
 
@@ -31,6 +31,17 @@ def pantry(request):
     item = Pantry.objects.all()
     return render(request, "recipemanager/pantry.html", {
         "items": item
+    })
+
+
+def view_recipe(request, id):
+    recipe = Recipe.objects.get(id=id)
+    ingredients = Ingredient.objects.filter(recipe=id)
+    steps = Step.objects.filter(recipe=id)
+    return render(request, "recipemanager/recipe-view.html", {
+        "recipe": recipe,
+        "ingredients": ingredients,
+        "steps": steps
     })
 
 
@@ -56,6 +67,18 @@ def all_recipe(request):
     return render(request, "recipemanager/all_recipe.html", {
         "recipes": recipes
     })
+
+
+def done_recipe(request, id):
+    ingredient = Ingredient.objects.filter(recipe_id=id)
+    for ing in ingredient:
+        p = Pantry.objects.get(item_id=ing.item_id)
+        u = Unit.objects.get(id=ing.unit_id)
+        p.quantity -= (ing.quantity * u.rate)
+        if p.quantity < 0:
+            p.quantity = 0
+        p.save()
+    return HttpResponseRedirect(reverse("all-recipe"))
 
 
 def available_recipe(request):
@@ -99,7 +122,8 @@ def save_recipe(request):
         data = json.loads(request.body)
         name = data.get('name')
         image = data.get('image')
-        r = Recipe(name=name, image=image)
+        time = data.get('time')
+        r = Recipe(name=name, image=image, time=time)
         r.save()
         recipe_ingredient = data.get('ingredients')
         for ing in recipe_ingredient:

@@ -6,16 +6,14 @@
     </h1>
     <article class="recipe-container">
         {% for recipe in recipes %}
-            <div class="recipe">
-                <a href="#">
+                <a class="recipe" href="{% url 'view-recipe' recipe.id %}">
                     <div class="recipe-name">
                         <h2>{{ recipe.name }}</h2>
                     </div>
-                    <div class="image-container">
+                    <div>
                         <img class="recipe-image" src="{{ recipe.image }}">
                     </div>
                 </a>
-            </div>
         {% endfor %}
     </article>
 
