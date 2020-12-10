@@ -4,6 +4,7 @@ from .models import Unit, Item, ShoppingList, Ingredient, Step, Recipe, Pantry
 from django.shortcuts import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
+from django.db.models import ObjectDoesNotExist
 
 import json
 
@@ -81,23 +82,20 @@ def done_recipe(request, id):
     return HttpResponseRedirect(reverse("all-recipe"))
 
 
+def ingredient_in_pantry(ingredient):
+    try:
+        return Pantry.objects.get(item=ingredient.item).quantity >= \
+               ingredient.quantity * Unit.objects.get(id=ingredient.unit_id).rate
+    except ObjectDoesNotExist:
+        return False
+
+
 def available_recipe(request):
     recipes = Recipe.objects.all()
     available_recipes = []
     unavailable_recipes = []
     for recipe in recipes:
-        available_ingredients = []
-        ingredients = Ingredient.objects.filter(recipe=recipe.id)
-        for ingredient in ingredients:
-            try:
-                p = Pantry.objects.get(item=ingredient.item)
-            except Pantry.DoesNotExist:
-                p = None
-            if p is not None:
-                rate = Unit.objects.get(id=ingredient.unit_id).rate
-                if p.quantity >= ingredient.quantity * rate:
-                    available_ingredients.append(ingredient.item)
-        if len(ingredients) == len(available_ingredients):
+        if all(ingredient_in_pantry(ingredient) for ingredient in recipe.ingredient_recipe_id.all()):
             available_recipes.append(recipe)
         else:
             unavailable_recipes.append(recipe)
