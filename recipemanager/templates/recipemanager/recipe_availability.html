@@ -19,7 +19,7 @@
             <div>
                 <h1>Unavailable Recipes</h1>
                 {% for unavail in unavailable_recipes %}
-                    <a class="recipe" href="{% url 'view-recipe' unavail.id %}">
+                    <a class="recipe" href="{% url 'view-recipe' unavail.id %}?unavailable=true">
                         <div class="recipe-name">
                             <h2>{{ unavail.name }}</h2>
                         </div>

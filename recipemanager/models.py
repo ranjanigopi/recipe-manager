@@ -56,6 +56,7 @@ class Step(models.Model):
 class ShoppingList(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True, related_name="shopping_item_id")
     quantity = models.IntegerField(default=0)
+    unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True, blank=True, related_name="shopping_unit_id")
 
     def __str__(self):
         return f"To shop:\n {self.item} - {self.quantity}"
@@ -68,7 +69,7 @@ class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,null=True,blank=True, related_name="ingredient_recipe_id")
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True, related_name="ingredient_item_id")
     quantity = models.IntegerField(default=0)
-    unit = models.ForeignKey(Unit,on_delete=models.SET_NULL, null=True, blank=True,related_name="ingredient_unit_id")
+    unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True, blank=True, related_name="ingredient_unit_id")
 
     def __str__(self):
         return f"Recipe id: {self.recipe} \n Item: {self.item} \n Quantity: {self.quantity} {self.unit.unit}"

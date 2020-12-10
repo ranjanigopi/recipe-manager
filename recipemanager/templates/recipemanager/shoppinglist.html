@@ -1,7 +1,20 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
     <div class="container">
-        <a class="a-link" href="#">Items to buy</a>
+        <table>
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+            </tr>
+            {% for shoppinglist in shopping_lists %}
+                <tr>
+                    <td>{{ shoppinglist.item }}</td>
+                    <td>{{ shoppinglist.quantity }}</td>
+                    <td>{{ shoppinglist.unit }}</td>
+                </tr>
+                </table>
+            {% endfor %}
         <a class="a-link" href="{% url 'index' %}">Home</a>
     </div>
     </div>

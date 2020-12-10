@@ -8,7 +8,9 @@ urlpatterns = [
     # index page options
     path('ingredient', views.ingredient_menu, name="ingredient"),
     path('recipe', views.recipe_menu, name="recipe"),
+
     path('shopping-list', views.shoppinglist_menu, name="shopping-list"),
+    path('shopping-list/add/<int:recipe_id>', views.add_shoppinglist, name="add-shopping-list"),
 
     # ingredient page options
     path('pantry', views.pantry, name="pantry"),

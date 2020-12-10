@@ -24,8 +24,19 @@ def recipe_menu(request):
     return render(request, "recipemanager/recipe.html")
 
 
+def add_shoppinglist(request, recipe_id):
+    ingredients = Ingredient.objects.filter(recipe=recipe_id)
+    for ingredient in ingredients:
+        s = ShoppingList(item=ingredient.item, quantity=ingredient.quantity, unit=ingredient.unit)
+        s.save()
+    return HttpResponseRedirect(reverse("shopping-list"))
+
+
 def shoppinglist_menu(request):
-    return render(request, "recipemanager/shoppinglist.html")
+    shopping_lists = ShoppingList.objects.all()
+    return render(request, "recipemanager/shoppinglist.html", {
+        "shopping_lists": shopping_lists
+    })
 
 
 def pantry(request):
@@ -39,10 +50,12 @@ def view_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     ingredients = Ingredient.objects.filter(recipe=id)
     steps = Step.objects.filter(recipe=id)
+    unavailable = request.GET.get("unavailable") == "true"
     return render(request, "recipemanager/recipe-view.html", {
         "recipe": recipe,
         "ingredients": ingredients,
-        "steps": steps
+        "steps": steps,
+        "unavailable": unavailable
     })
 
 

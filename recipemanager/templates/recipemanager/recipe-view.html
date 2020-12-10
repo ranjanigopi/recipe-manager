@@ -14,7 +14,10 @@
                 {% endfor %}
             </ul>
         </div>
-        <a class="btn btn-primary btn-cook" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
+        <div class="btn-cook">
+            <a class="btn btn-primary" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
+            <a class="btn btn-secondary" href="{% url 'add-shopping-list' recipe.id %}">Add to shopping list</a>
+        </div>
         <p class="time">Cooking Time: {{ recipe.time }}</p>
     </div>
     <div class="procedure">
