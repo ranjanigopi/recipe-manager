@@ -82,7 +82,29 @@ def done_recipe(request, id):
 
 
 def available_recipe(request):
-    return render(request, "recipemanager/index.html")
+    recipes = Recipe.objects.all()
+    available_recipes = []
+    unavailable_recipes = []
+    for recipe in recipes:
+        available_ingredients = []
+        ingredients = Ingredient.objects.filter(recipe=recipe.id)
+        for ingredient in ingredients:
+            try:
+                p = Pantry.objects.get(item=ingredient.item)
+            except Pantry.DoesNotExist:
+                p = None
+            if p is not None:
+                rate = Unit.objects.get(id=ingredient.unit_id).rate
+                if p.quantity >= ingredient.quantity * rate:
+                    available_ingredients.append(ingredient.item)
+        if len(ingredients) == len(available_ingredients):
+            available_recipes.append(recipe)
+        else:
+            unavailable_recipes.append(recipe)
+    return render(request, "recipemanager/recipe_availability.html", {
+        "available_recipes": available_recipes,
+        "unavailable_recipes": unavailable_recipes,
+    })
 
 
 def add_recipe(request):

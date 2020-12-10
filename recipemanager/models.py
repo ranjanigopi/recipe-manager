@@ -23,7 +23,7 @@ class Item(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-# Items available in pantry with quantity 
+# Items available in pantry with quantity
 
 
 class Pantry(models.Model):
@@ -65,12 +65,10 @@ class ShoppingList(models.Model):
 
 
 class Ingredient(models.Model):
-    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,null=True,blank=True,related_name="ingredient_recipe_id")
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,null=True,blank=True, related_name="ingredient_recipe_id")
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True, related_name="ingredient_item_id")
     quantity = models.IntegerField(default=0)
     unit = models.ForeignKey(Unit,on_delete=models.SET_NULL, null=True, blank=True,related_name="ingredient_unit_id")
 
     def __str__(self):
-        return f"Recipe id: {self.recipe} \n Item: {self.item} \n Quantity: {self.quantity}"
-
-
+        return f"Recipe id: {self.recipe} \n Item: {self.item} \n Quantity: {self.quantity} {self.unit.unit}"

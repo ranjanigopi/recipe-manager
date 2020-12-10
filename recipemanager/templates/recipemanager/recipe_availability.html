@@ -1,0 +1,34 @@
+{% extends "recipemanager/layout.html" %} {% load static %}
+{% block body %}
+    <link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
+    <div>
+        <article class="recipe-container">
+            <div>
+                <h1>Available Recipes</h1>
+                {% for avail in available_recipes %}
+                    <a class="recipe" href="{% url 'view-recipe' avail.id %}">
+                        <div class="recipe-name">
+                            <h2>{{ avail.name }}</h2>
+                        </div>
+                        <div>
+                            <img class="recipe-image" src="{{ avail.image }}">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div>
+                <h1>Unavailable Recipes</h1>
+                {% for unavail in unavailable_recipes %}
+                    <a class="recipe" href="{% url 'view-recipe' unavail.id %}">
+                        <div class="recipe-name">
+                            <h2>{{ unavail.name }}</h2>
+                        </div>
+                        <div>
+                            <img class="recipe-image" src="{{ unavail.image }}">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </article>
+    </div>
+{% endblock %}
