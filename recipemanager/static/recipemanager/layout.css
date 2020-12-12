@@ -10,10 +10,10 @@
 * {
     box-sizing: border-box;
     color: #0B130E;
+    font-family: "MV Boli", cursive;
 }
 
 body {
-    font-family: "MV Boli", cursive;
     background-color: #EAECF1;
     background-image: url("/static/recipemanager/criss-cross.png");
     margin: 0;
@@ -31,7 +31,20 @@ a:active {
 }
 
 h2 {
-    margin: 0;
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+input,
+select,
+button {
+    font-size: inherit;
+}
+
+input:focus,
+select:focus,
+button:focus {
+    outline: none;
 }
 
 .nav {
@@ -72,6 +85,12 @@ h2 {
     margin-bottom: 20px;
 }
 
+.form-actions .action + .action,
+.actions .action + .action {
+    margin-left: 10px;
+}
+
+.form-actions .action-button,
 .actions .action-button {
     display: inline-block;
     background-color: #857D48;

@@ -11,10 +11,4 @@ class AddPantryItem(forms.Form):
     Unit = forms.ModelChoiceField(required=True,
                                   queryset=Unit.objects.all())
 
-    def __init__(self, *args, **kwargs):
-        super(AddPantryItem, self).__init__(*args, **kwargs)
-        self.fields['Name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['Quantity'].widget.attrs.update({'class': 'form-control'})
-        self.fields['Unit'].widget.attrs.update({'class': 'form-control'})
-
 

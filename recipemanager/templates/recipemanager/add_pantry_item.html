@@ -1,19 +1,19 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
-     <h1>
-         Add Ingredients
-     </h1>
-    <div class="add-pantry-item">
-        <form class="add-pantry-item-form" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div>
-                <button type="submit" class="btn btn-outline-primary" name="action" value="create">Create</button>
-                <button type="submit" class="btn btn-link" name="action" value="cancel">Cancel</button>
-            </div>
-        </form>
-    </div>
-{#    <div>#}
-{#        <a class="a-link" href="{% url 'index' %}">Home</a>#}
-{#    </div>#}
+    <link rel="stylesheet" href="{% static 'recipemanager/add_pantry_item.css' %}">
+    <h2>
+        Add Pantry Item
+    </h2>
+    <form class="add-pantry-item" method="post">
+        {% csrf_token %}
+        <div class="name-label">{{ form.Name.label_tag }}</div>
+        <div class="name-input">{{ form.Name }}</div>
+        <div class="quantity-label">{{ form.Quantity.label_tag }}</div>
+        <div class="quantity-input">{{ form.Quantity }}</div>
+        <div class="unit-input">{{ form.Unit }}</div>
+        <div class="form-actions">
+            <button type="submit" class="action action-button" name="action" value="create">Create</button>
+            <a class="action action-link" href="{% url 'pantry' %}">Cancel</a>
+        </div>
+    </form>
 {% endblock %}

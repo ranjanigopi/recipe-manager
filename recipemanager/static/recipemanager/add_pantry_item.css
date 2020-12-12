@@ -1,0 +1,49 @@
+.add-pantry-item {
+    max-width: 500px;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        "name-label name-input name-input"
+        "quantity-label quantity-input unit-input"
+        ". form-actions form-actions";
+    grid-template-columns: 100px 1fr 120px;
+    align-items: baseline;
+}
+
+.add-pantry-item > * {
+    padding: 10px;
+}
+
+select,
+input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 5px dotted #BDC8BE;
+    padding: 10px;
+    height: 50px;
+}
+
+.name-label {
+    grid-area: name-label;
+}
+
+.name-input {
+    grid-area: name-input;
+}
+
+.quantity-label {
+    grid-area: quantity-label;
+}
+
+.quantity-input {
+    grid-area: quantity-input;
+}
+
+.unit-input {
+    grid-area: unit-input;
+}
+
+.form-actions {
+    grid-area: form-actions;
+}

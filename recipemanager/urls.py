@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.index, name="index"),
 
     # pantry page options
-    path('pantry', views.pantry, name="pantry"),
+    path('pantry', views.view_pantry, name="pantry"),
     path('pantry/add', views.add_pantry_item, name="add-pantry-item"),
 
     # shopping list page options

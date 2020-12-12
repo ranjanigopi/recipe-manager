@@ -51,7 +51,7 @@ def shoppinglist_menu(request):
     })
 
 
-def pantry(request):
+def view_pantry(request):
     items = Pantry.objects.all()
     return render(request, "recipemanager/pantry.html", {
         "items": items
@@ -75,8 +75,6 @@ def add_pantry_item(request):
     form = AddPantryItem(request.POST or None)
     if request.method == "POST":
         action = request.POST.get("action")
-        if action == "cancel":
-            return HttpResponseRedirect(reverse("pantry"))
         if action == "create" and form.is_valid():
             name = form.cleaned_data["Name"]
             quantity = form.cleaned_data["Quantity"]
