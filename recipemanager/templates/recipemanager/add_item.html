@@ -1,8 +1,8 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
-    <link rel="stylesheet" href="{% static 'recipemanager/add-pantry-item.css' %}">
+    <link rel="stylesheet" href="{% static 'recipemanager/add-item.css' %}">
     <h2>
-        Add Pantry Item
+        {{ title }}
     </h2>
     <form class="add-pantry-item" method="post">
         {% csrf_token %}
@@ -12,8 +12,8 @@
         <div class="quantity-input">{{ form.Quantity }}</div>
         <div class="unit-input">{{ form.Unit }}</div>
         <div class="form-actions">
-            <button type="submit" class="action action-button" name="action" value="create">Create</button>
-            <a class="action action-link" href="{% url 'pantry' %}">Cancel</a>
+            <button type="submit" class="action action-button">Add Item</button>
+            <a class="action action-link" href="{% url cancel_view %}">Cancel</a>
         </div>
     </form>
 {% endblock %}

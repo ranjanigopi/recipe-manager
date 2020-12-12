@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .form.AddPantryItem import AddPantryItem
+from .form.AddItem import AddItem
 from .models import Unit, Item, ShoppingList, Ingredient, Step, Recipe, Pantry
 from django.shortcuts import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
@@ -27,6 +27,22 @@ def add_shoppinglist(request, recipe_id):
         finally:
             s.save()
     return HttpResponseRedirect(reverse("shopping-list"))
+
+
+def add_shoppinglist_item(request):
+    form = AddItem(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            name = form.cleaned_data["Name"]
+            quantity = form.cleaned_data["Quantity"]
+            unit = form.cleaned_data["Unit"]
+            add_shopping_item(name, quantity, unit)
+            form = AddItem(None)
+    return render(request, "recipemanager/add_item.html", {
+        "form": form,
+        "title": "Add Shopping List Item",
+        "cancel_view": "shopping-list"
+    })
 
 
 def shoppinglist_menu(request):
@@ -68,17 +84,18 @@ def view_recipe(request, id):
 
 
 def add_pantry_item(request):
-    form = AddPantryItem(request.POST or None)
+    form = AddItem(request.POST or None)
     if request.method == "POST":
-        action = request.POST.get("action")
-        if action == "create" and form.is_valid():
+        if form.is_valid():
             name = form.cleaned_data["Name"]
             quantity = form.cleaned_data["Quantity"]
             unit = form.cleaned_data["Unit"]
             add_item(name, quantity, unit)
-            form = AddPantryItem(None)
-    return render(request, "recipemanager/add_pantry_item.html", {
-        "form": form
+            form = AddItem(None)
+    return render(request, "recipemanager/add_item.html", {
+        "form": form,
+        "title": "Add Pantry Item",
+        "cancel_view": "pantry"
     })
 
 
@@ -142,6 +159,20 @@ def add_item(name, new_quantity, unit):
     else:
         p = Pantry(item=item, quantity=quantity)
     p.save()
+
+
+def add_shopping_item(name, new_quantity, unit_name):
+    item = add_new_item(name, unit_name)
+    unit = Unit.objects.get(unit=unit_name)
+    rate = unit.rate
+    shopping_item = ShoppingList.objects.filter(item=item)
+    quantity = new_quantity * rate
+    if shopping_item.exists():
+        s = shopping_item[0]
+        s.quantity += quantity
+    else:
+        s = ShoppingList(item=item, quantity=quantity, unit=unit)
+    s.save()
 
 
 def add_new_item(name, unit):

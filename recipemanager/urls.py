@@ -11,6 +11,7 @@ urlpatterns = [
     # shopping list page options
     path('shopping-list', views.shoppinglist_menu, name="shopping-list"),
     path('shopping-list/add/<int:recipe_id>', views.add_shoppinglist, name="add-shopping-list"),
+    path('shopping-list/add', views.add_shoppinglist_item, name="add-shopping-list-item"),
 
     # recipe page options
     path('recipe', views.all_recipe, name="recipe"),

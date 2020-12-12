@@ -3,7 +3,7 @@ from django import forms
 from ..models import Unit
 
 
-class AddPantryItem(forms.Form):
+class AddItem(forms.Form):
     Name = forms.CharField(required=True,
                            widget=forms.TextInput(attrs={"placeholder": "Enter ingredient name.."}))
     Quantity = forms.IntegerField(required=True,

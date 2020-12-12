@@ -1,7 +1,10 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
     <link href="{% static 'recipemanager/shopping-list.css' %}" rel="stylesheet">
-    <h1>Shopping List</h1>
+    <div class="page-actions">
+        <a class="action action-button" href="{% url 'add-shopping-list-item' %}">Add Item</a>
+    </div>
+    <h2>Shopping List</h2>
     <div class="shopping-list">
         {% for shoppinglist in shoppinglists %}
             <form class="shopping-list-item" method="post">
