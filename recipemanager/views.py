@@ -41,7 +41,7 @@ def shoppinglist_menu(request):
         s = ShoppingList.objects.get(id=id)
         s.delete()
     shoppinglists = ShoppingList.objects.all()
-    return render(request, "recipemanager/shoppinglist.html", {
+    return render(request, "recipemanager/shopping_list.html", {
         "shoppinglists": shoppinglists,
         "units": Unit.objects.all()
     })
@@ -59,7 +59,7 @@ def view_recipe(request, id):
     ingredients = Ingredient.objects.filter(recipe=id)
     steps = Step.objects.filter(recipe=id).order_by('order')
     unavailable = request.GET.get("unavailable") == "true"
-    return render(request, "recipemanager/recipe-view.html", {
+    return render(request, "recipemanager/recipe_view.html", {
         "recipe": recipe,
         "ingredients": ingredients,
         "steps": steps,
