@@ -2,8 +2,6 @@ from django import forms
 
 from ..models import Unit
 
-# Add ingredients to make recipe
-
 
 class AddPantryItem(forms.Form):
     Name = forms.CharField(required=True,

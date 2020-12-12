@@ -1,21 +1,21 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
-    <div class="container">
-        <table>
-            <tr>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Unit</th>
-            </tr>
-            {% for shoppinglist in shopping_lists %}
-                <tr>
-                    <td>{{ shoppinglist.item }}</td>
-                    <td>{{ shoppinglist.quantity }}</td>
-                    <td>{{ shoppinglist.unit }}</td>
-                </tr>
-                </table>
-            {% endfor %}
-        <a class="a-link" href="{% url 'index' %}">Home</a>
-    </div>
+    <link href="{% static 'recipemanager/shopping-list.css' %}" rel="stylesheet">
+    <h1>Shopping List</h1>
+    <div class="shopping-list">
+        {% for shoppinglist in shoppinglists %}
+            <form class="shopping-list-item" method="post">
+                <span>{{ shoppinglist.item.name }}</span>
+                <div>
+                    <input type="text" name="quantity" value="{{ shoppinglist.quantity }}" required>
+                    {% include "recipemanager/units.html" %}
+                </div>
+                <button class="btn btn-primary" type="submit" name="action" value="buy">Item Bought</button>
+                <button class="btn btn-outline-primary" type="submit" name="action" value="remove">Remove Item</button>
+                {% csrf_token %}
+                <input type="hidden" name="name" value="{{ shoppinglist.item.name }}">
+                <input type="hidden" name="id" value="{{ shoppinglist.id }}">
+            </form>
+        {% endfor %}
     </div>
 {% endblock %}

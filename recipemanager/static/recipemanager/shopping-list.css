@@ -1,0 +1,18 @@
+.shopping-list {
+    margin: 20px;
+}
+
+.shopping-list-item {
+    display: grid;
+    grid-template-columns: 1fr 400px 200px 200px;
+    padding: 10px 0;
+    align-items: center;
+}
+
+.shopping-list-item:not(:last-of-type) {
+    border-bottom: 1px solid #ddd;
+}
+
+.shopping-list-item .btn + .btn {
+    margin-left: 10px;
+}

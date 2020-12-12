@@ -33,9 +33,20 @@ def add_shoppinglist(request, recipe_id):
 
 
 def shoppinglist_menu(request):
-    shopping_lists = ShoppingList.objects.all()
+    if request.method == "POST":
+        action = request.POST.get("action")
+        id = request.POST.get('id')
+        if action == "buy":
+            name = request.POST.get('name')
+            quantity = int(request.POST.get('quantity'))
+            unit = Unit.objects.get(id=request.POST.get('unit')).unit
+            add_item(name, quantity, unit)
+        s = ShoppingList.objects.get(id=id)
+        s.delete()
+    shoppinglists = ShoppingList.objects.all()
     return render(request, "recipemanager/shoppinglist.html", {
-        "shopping_lists": shopping_lists
+        "shoppinglists": shoppinglists,
+        "units": Unit.objects.all()
     })
 
 
