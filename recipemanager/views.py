@@ -27,8 +27,13 @@ def recipe_menu(request):
 def add_shoppinglist(request, recipe_id):
     ingredients = Ingredient.objects.filter(recipe=recipe_id)
     for ingredient in ingredients:
-        s = ShoppingList(item=ingredient.item, quantity=ingredient.quantity, unit=ingredient.unit)
-        s.save()
+        try:
+            s = ShoppingList.objects.get(item=ingredient.item)
+            s.quantity += s.quantity
+        except ObjectDoesNotExist:
+            s = ShoppingList(item=ingredient.item, quantity=ingredient.quantity, unit=ingredient.unit)
+        finally:
+            s.save()
     return HttpResponseRedirect(reverse("shopping-list"))
 
 
