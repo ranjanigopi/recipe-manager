@@ -28,12 +28,7 @@
         </div>
         <div class="row">
             <label class="text">Unit</label>
-            <select id="unit" class="input" required>
-                <option disabled selected>Select unit</option>
-                {% for u in units %}
-                    <option value="{{ u.id }}">{{ u.unit }}</option>
-                {% endfor %}
-            </select>
+            {% include "recipemanager/units.html" %}
         </div>
         <button class="btn btn-outline-primary add-ingredient" onclick="addIngredient()">Add Next Ingredient
         </button>
