@@ -20,8 +20,12 @@
             </ul>
         </div>
         <div class="recipe-actions">
-            <a class="action action-button" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
-            <a class="action action-button" href="{% url 'add-shopping-list' recipe.id %}">Add to shopping list</a>
+            {% if available %}
+                <a class="action action-button" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
+            {% endif %}
+            {% if unavailable %}
+                <a class="action action-button" href="{% url 'add-shopping-list' recipe.id %}">Add to shopping list</a>
+            {% endif %}
         </div>
         <div class="time">Cooking Time: {{ recipe.time }}</div>
     </div>

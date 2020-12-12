@@ -11,7 +11,7 @@
         <article class="recipes">
 
             {% for avail in available_recipes %}
-                <a class="recipe" href="{% url 'view-recipe' avail.id %}">
+                <a class="recipe" href="{% url 'view-recipe' avail.id %}?available=true">
                     <div class="recipe-image" style="background-image: url('{{ avail.image }}');"></div>
                     <div class="recipe-name">
                         {{ avail.name }}

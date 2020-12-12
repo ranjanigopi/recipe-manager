@@ -74,12 +74,12 @@ def view_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     ingredients = Ingredient.objects.filter(recipe=id)
     steps = Step.objects.filter(recipe=id).order_by('order')
-    unavailable = request.GET.get("unavailable") == "true"
     return render(request, "recipemanager/recipe_view.html", {
         "recipe": recipe,
         "ingredients": ingredients,
         "steps": steps,
-        "unavailable": unavailable
+        "available": request.GET.get("available") == "true",
+        "unavailable": request.GET.get("unavailable") == "true"
     })
 
 
