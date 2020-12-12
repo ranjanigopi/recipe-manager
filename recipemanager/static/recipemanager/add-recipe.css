@@ -1,0 +1,14 @@
+.recipe-form {
+    display: grid;
+    max-width: 520px;
+    margin: auto;
+    grid-template-columns: 120px 1fr;
+    align-items: baseline;
+    grid-gap: 10px;
+}
+
+.quantity {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 120px;
+}

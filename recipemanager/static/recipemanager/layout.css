@@ -38,20 +38,20 @@
 
 .body {
     padding: 10px;
+    max-width: 1000px;
+    margin: auto;
 }
 
-.actions {
+.page-actions {
     text-align: right;
     margin-bottom: 20px;
 }
 
-.form-actions .action + .action,
-.actions .action + .action {
+.action + .action {
     margin-left: 10px;
 }
 
-.form-actions .action-button,
-.actions .action-button {
+.action.action-button {
     display: inline-block;
     background-color: #857D48;
     border-radius: 4px;

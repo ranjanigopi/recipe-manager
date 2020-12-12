@@ -13,8 +13,7 @@ urlpatterns = [
     path('shopping-list/add/<int:recipe_id>', views.add_shoppinglist, name="add-shopping-list"),
 
     # recipe page options
-    path('recipe', views.recipe_menu, name="recipe"),
-    path('recipe/all', views.all_recipe, name="all-recipe"),
+    path('recipe', views.all_recipe, name="recipe"),
     path('recipe/availability', views.available_recipe, name="available-recipe"),
     path('recipe/add', views.add_recipe, name="add-recipe"),
     path('recipe/save', views.save_recipe, name="save-recipe"),

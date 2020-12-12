@@ -16,10 +16,6 @@ def index(request):
     return render(request, "recipemanager/index.html")
 
 
-def recipe_menu(request):
-    return render(request, "recipemanager/recipe.html")
-
-
 def add_shoppinglist(request, recipe_id):
     ingredients = Ingredient.objects.filter(recipe=recipe_id)
     for ingredient in ingredients:
@@ -61,7 +57,7 @@ def view_pantry(request):
 def view_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     ingredients = Ingredient.objects.filter(recipe=id)
-    steps = Step.objects.filter(recipe=id)
+    steps = Step.objects.filter(recipe=id).order_by('order')
     unavailable = request.GET.get("unavailable") == "true"
     return render(request, "recipemanager/recipe-view.html", {
         "recipe": recipe,
@@ -102,7 +98,7 @@ def done_recipe(request, id):
         if p.quantity < 0:
             p.quantity = 0
         p.save()
-    return HttpResponseRedirect(reverse("all-recipe"))
+    return HttpResponseRedirect(reverse("recipe"))
 
 
 def ingredient_in_pantry(ingredient):

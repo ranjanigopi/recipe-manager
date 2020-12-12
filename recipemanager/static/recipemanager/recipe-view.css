@@ -1,0 +1,66 @@
+h4 {
+    margin-bottom: 0;
+}
+
+p {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 5px dotted #BDC8BE;
+}
+
+.recipe-banner {
+    display: grid;
+    grid-template-areas:
+       "recipe-image"
+       "ingredients"
+       "time"
+       "recipe-actions";
+    box-shadow: 0 2px 3px 0 #565D5C;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    grid-gap: 10px;
+    padding: 25px;
+}
+
+.img-container {
+    grid-area: recipe-image;
+    text-align: center;
+}
+
+.recipe-image {
+    max-width: 100%;
+}
+
+.ingredients {
+    grid-area: ingredients;
+}
+
+.recipe-actions {
+    grid-area: recipe-actions;
+}
+
+.time {
+    font-weight: bold;
+    grid-area: time;
+}
+
+.recipe-banner,
+.procedure {
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+@media screen and (min-width: 750px) {
+    .recipe-banner {
+        grid-template-areas:
+           "recipe-image ingredients"
+           "recipe-image ingredients"
+           "time recipe-actions";
+    }
+
+    .recipe-image {
+        max-height: 270px;
+        max-width: 480px;
+    }
+}

@@ -1,36 +1,35 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
-    <link href="{% static 'recipemanager/view-recipe.css' %}" rel="stylesheet">
-    <h1>{{ recipe.name }}</h1>
-    <div class="recipe-view-container">
+    <link href="{% static 'recipemanager/recipe-view.css' %}" rel="stylesheet">
+    <div class="page-actions">
+        <a href="{% url 'recipe' %}" class="action action-button">All Recipes</a>
+        <a href="{% url 'available-recipe' %}" class="action action-button">Recipe Availability</a>
+        <a href="{% url 'add-recipe' %}" class="action action-button">Add Recipe</a>
+    </div>
+    <h2>{{ recipe.name }}</h2>
+    <div class="recipe-banner">
         <div class="img-container">
             <img class="recipe-image" src="{{ recipe.image }}" alt="Rava Kesari image">
         </div>
-        <div class="ingredient">
-            <p>Ingredients needed</p>
+        <div class="ingredients">
+            <h3>Ingredients needed</h3>
             <ul>
                 {% for ingredient in ingredients %}
                     <li>{{ ingredient.item.name }} - {{ ingredient.quantity }} {{ ingredient.unit }}</li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="btn-cook">
-            <a class="btn btn-primary" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
-            <a class="btn btn-secondary" href="{% url 'add-shopping-list' recipe.id %}">Add to shopping list</a>
+        <div class="recipe-actions">
+            <a class="action action-button" href="{% url 'done-recipe' recipe.id %}">Cooked this recipe</a>
+            <a class="action action-button" href="{% url 'add-shopping-list' recipe.id %}">Add to shopping list</a>
         </div>
-        <p class="time">Cooking Time: {{ recipe.time }}</p>
+        <div class="time">Cooking Time: {{ recipe.time }}</div>
     </div>
     <div class="procedure">
-        <p>Procedure</p>
-        <ul>
-            {% for step in steps %}
-                <li>{{ step.order }}. {{ step.name }}</li>
-                <div>{{ step.description }}</div>
-            {% endfor %}
-        </ul>
-
-        <div class="home">
-            <a href="{% url 'all-recipe' %}">Back to Recipe</a>
-        </div>
+        <h3>Procedure</h3>
+        {% for step in steps %}
+            <h4>{{ step.order }}. {{ step.name }}</h4>
+            <p>{{ step.description }}</p>
+        {% endfor %}
     </div>
 {% endblock %}

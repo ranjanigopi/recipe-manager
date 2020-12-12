@@ -28,12 +28,34 @@ h2 {
 
 input,
 select,
-button {
+button,
+textarea {
     font-size: inherit;
+}
+
+select,
+input,
+textarea {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 5px dotted #BDC8BE;
+    padding: 10px;
+    height: 50px;
+}
+
+textarea {
+    height: 200px;
 }
 
 input:focus,
 select:focus,
-button:focus {
+button:focus,
+textarea:focus {
     outline: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
 }

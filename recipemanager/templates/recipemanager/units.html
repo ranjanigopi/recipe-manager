@@ -1,5 +1,5 @@
 <select id="unit" name="unit" class="input" required>
-    <option disabled selected>Select unit</option>
+    <option disabled selected>------</option>
     {% for u in units %}
         <option value="{{ u.id }}">{{ u.unit }}</option>
     {% endfor %}

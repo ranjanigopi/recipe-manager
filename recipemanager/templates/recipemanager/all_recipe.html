@@ -1,20 +1,21 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
     <link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
-    <h1>
+    <div class="page-actions">
+        <a href="{% url 'available-recipe' %}" class="action action-button">Recipe Availability</a>
+        <a href="{% url 'add-recipe' %}" class="action action-button">Add Recipe</a>
+    </div>
+    <h2>
         All Recipes
-    </h1>
-    <article class="recipe-container">
+    </h2>
+    <article class="recipes">
         {% for recipe in recipes %}
-                <a class="recipe" href="{% url 'view-recipe' recipe.id %}">
-                    <div class="recipe-name">
-                        <h2>{{ recipe.name }}</h2>
-                    </div>
-                    <div>
-                        <img class="recipe-image" src="{{ recipe.image }}">
-                    </div>
-                </a>
+            <a class="recipe" href="{% url 'view-recipe' recipe.id %}">
+                <div class="recipe-image" style="background-image: url('{{ recipe.image }}');"></div>
+                <div class="recipe-name">
+                    {{ recipe.name }}
+                </div>
+            </a>
         {% endfor %}
     </article>
-
 {% endblock %}

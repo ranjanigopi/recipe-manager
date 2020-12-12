@@ -1,60 +1,55 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
-    <link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
-    <h1>
+    <link href="{% static 'recipemanager/add-recipe.css' %}" rel="stylesheet">
+    <div class="page-actions">
+        <a href="{% url 'recipe' %}" class="action action-button">All Recipes</a>
+        <a href="{% url 'available-recipe' %}" class="action action-button">Recipe Availability</a>
+    </div>
+    <h2>
         Add Recipe
-    </h1>
+    </h2>
 
     <div class="recipe-form">
+        <div class="label">Name</div>
+        <input type="text" class="input" id="recipe-name" placeholder="Enter recipe name">
 
-        <div class="row">
-            <label class="text">Name</label>
-            <input type="text" class="input" id="recipe-name" placeholder="Enter recipe name">
-        </div>
-        <div class="row">
-            <label class="text">Image url</label>
-            <input type="text" class="input" id="image" placeholder="Enter recipe image url">
-        </div>
-        <ul id="ingredients-list">
+        <div class="label">Image url</div>
+        <input type="text" class="input" id="image" placeholder="Enter recipe image url">
 
-        </ul>
-        <div class="row">
-            <label class="text">Ingredients</label>
-            <input type="text" class="input" id="ingredient" placeholder="Enter Ingredient">
-        </div>
-        <div class="row">
-            <label class="text">Quantity</label>
+        <div class="filler"></div>
+        <ul id="ingredients-list"></ul>
+
+        <div class="label">Ingredients</div>
+        <input type="text" class="input" id="ingredient" placeholder="Enter Ingredient">
+
+        <div class="label">Quantity</div>
+        <div class="quantity">
             <input type="text" class="input" id="quantity" placeholder="Enter ingredient quantity">
-        </div>
-        <div class="row">
-            <label class="text">Unit</label>
             {% include "recipemanager/units.html" %}
         </div>
-        <button class="btn btn-outline-primary add-ingredient" onclick="addIngredient()">Add Next Ingredient
-        </button>
-        <div class="row">
-            <label class="text"> Cooking Time</label>
-            <input type="number" class="input" id="cooking-time" placeholder="Enter cooking time in minutes">
-        </div>
-        <ul id="steps">
 
-        </ul>
-        <div class="row">
-            <label class="text"> Step Number</label>
-            <input type="number" class="input" id="step-no" placeholder="Enter Step number">
-        </div>
-        <div class="row">
-            <label class="text"> Step Name</label>
-            <input type="text" class="input" id="step-name" placeholder="Enter the step name">
-        </div>
-        <div class="row">
-            <label class="text">Procedure</label>
-            <textarea class="input" id="step-procedure" placeholder="Enter procedure"></textarea>
-        </div>
-        <button class="btn btn-outline-primary add-step" onclick="addStep()">Add Next Step</button>
-        <div class="row">
-            <button class="btn btn-outline-primary" onclick="saveRecipe()">Submit</button>
-            <button class="btn btn-link" onclick="cancelRecipe()">Cancel</button>
+        <div class="filler"></div>
+        <button class="action action-button add-ingredient" onclick="addIngredient()">Add Next Ingredient</button>
+
+        <div class="label">Cooking Time</div>
+        <input type="number" class="input" id="cooking-time" placeholder="Enter cooking time in minutes">
+
+        <div class="filler"></div>
+        <ul id="steps"></ul>
+
+        <div class="label">Step Name</div>
+        <input type="text" class="input" id="step-name" placeholder="Enter the step name">
+
+        <div class="label">Procedure</div>
+        <textarea class="input" id="step-procedure" placeholder="Enter procedure"></textarea>
+
+        <div class="filler"></div>
+        <button class="action action-button add-step" onclick="addStep()">Add Next Step</button>
+
+        <div class="filler"></div>
+        <div class="form-actions">
+            <button class="action action-button" onclick="saveRecipe()">Save Recipe</button>
+            <a href="{% url 'recipe' %}" class="action action-link">Cancel</a>
         </div>
     </div>
     <script src="{% static "recipemanager/recipe.js" %}"></script>

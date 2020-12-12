@@ -15,7 +15,7 @@ function renderIngredients() {
     ingredients.innerHTML = '';
     ingredientList.forEach(ing => {
         const unit = units.options[ing.unit].text;
-        ingredients.innerHTML += `<li>${ing.ingredient} - ${ing.quantity} ${unit}</li>`;
+        ingredients.innerHTML += `<li><b>${ing.ingredient}</b> - ${ing.quantity} ${unit}</li>`;
     })
 }
 
@@ -34,6 +34,7 @@ function addIngredient() {
     ingredient.value = null;
     quantity.value = null;
     units.value = null;
+    ingredient.focus();
 
     renderIngredients();
 }
@@ -41,7 +42,7 @@ function addIngredient() {
 function renderSteps() {
     steps.innerHTML = '';
     stepList.forEach(step => {
-        steps.innerHTML += `<li>${step.stepNumber} - ${step.stepName} - ${step.stepProcedure}</li>`;
+        steps.innerHTML += `<li><b>${step.stepNumber}. ${step.stepName}</b> - ${step.stepProcedure}</li>`;
     })
 }
 
@@ -55,18 +56,17 @@ function newStep(stepNumber, stepName, stepProcedure) {
 
 
 function addStep() {
-    const step = newStep(stepNumber.value, stepName.value, stepProcedure.value)
+    const step = newStep(stepList.length + 1, stepName.value, stepProcedure.value)
     stepList.push(step)
 
-    stepNumber.value = null;
     stepName.value = null;
     stepProcedure.value = null;
-    stepNumber.focus();
+    stepName.focus();
     renderSteps()
 }
 
 function redirectToAllRecipes() {
-    window.location.href = '/recipe/all';
+    window.location.href = '/recipe';
 }
 
 function saveRecipe() {
@@ -87,7 +87,4 @@ function saveRecipe() {
         })
 }
 
-function cancelRecipe() {
-    redirectToAllRecipes();
-}
 

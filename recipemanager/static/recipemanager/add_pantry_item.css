@@ -14,16 +14,6 @@
     padding: 10px;
 }
 
-select,
-input {
-    width: 100%;
-    background: none;
-    border: none;
-    border-bottom: 5px dotted #BDC8BE;
-    padding: 10px;
-    height: 50px;
-}
-
 .name-label {
     grid-area: name-label;
 }
