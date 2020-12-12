@@ -1,8 +1,9 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
 {% block body %}
+    <link rel="stylesheet" href="{% static "recipemanager/index.css" %}">
     <div class="container">
-        <a class="ingredient a-link" href="{% url 'ingredient' %}">Ingredients</a>
-        <a class="recipe a-link" href="{% url 'recipe' %}">Recipe</a>
+        <a class="ingredient a-link" href="{% url 'ingredient' %}">Pantry</a>
+        <a class="recipe a-link" href="{% url 'recipe' %}">Recipes</a>
         <a class="shoppinglist a-link" href="{% url 'shopping-list' %}">Shopping List</a>
     </div>
 {% endblock %}
