@@ -30,6 +30,10 @@ a:active {
     text-decoration: none;
 }
 
+h2 {
+    margin: 0;
+}
+
 .nav {
     background-color: #BDC8BE;
     box-shadow: 0 0 5px 0 #565D5C;
@@ -48,11 +52,50 @@ a:active {
     list-style: none;
 }
 
+.nav li {
+    border-color: rgba(11, 19, 14, .1);
+    border-style: solid;
+    border-width: 0 0 1px 0;
+}
+
 .nav a {
     display: block;
     padding: 5px;
 }
 
-.nav li {
-    border-bottom: 1px solid rgba(11, 19, 14, .1);
+.body {
+    padding: 10px;
+}
+
+.actions {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.actions .action-button {
+    display: inline-block;
+    background-color: #857D48;
+    border-radius: 4px;
+    color: #FFFFFF;
+    box-shadow: 1px 3px 0 0 #565D5C;
+    padding: 3px 15px;
+}
+
+@media screen and (min-width: 750px) {
+    .nav ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav li {
+        border-width: 0;
+    }
+
+    .nav li:not(:last-of-type) {
+        border-width: 0 1px 0 0;
+    }
+
+    .nav a {
+        padding: 5px 25px;
+    }
 }

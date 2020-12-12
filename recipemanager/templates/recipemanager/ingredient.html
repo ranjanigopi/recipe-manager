@@ -1,9 +1,0 @@
-{% extends "recipemanager/layout.html" %} {% load static %}
-{% block body %}
-    <div class="container">
-            <a class="pantry a-link" href="{% url 'pantry' %}">Pantry</a>
-            <a class="add-pantryitem a-link" href="{% url 'add-pantry-item' %}">Add Item to Pantry</a>
-            <a class="home a-link" href="{% url 'index' %}">Home</a>
-    </div>
-
-{% endblock %}

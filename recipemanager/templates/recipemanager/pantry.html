@@ -1,23 +1,20 @@
 {% extends "recipemanager/layout.html" %} {% load static %}
-<link href="{% static 'recipemanager/recipe.css' %}" rel="stylesheet">
 {% block body %}
-    <div class="pantry">
-        <h2>Pantry Items</h2>
-        <table>
+    <link href="{% static 'recipemanager/pantry.css' %}" rel="stylesheet">
+    <div class="actions">
+        <a class="action-button" href="{% url 'add-pantry-item' %}">Add Item</a>
+    </div>
+    <h2>Pantry</h2>
+    <table class="pantry">
+        <tr>
+            <th class="item">Item</th>
+            <th class="quantity">Quantity</th>
+        </tr>
+        {% for item in items %}
             <tr>
-                <th>Item</th>
-                <th>Quantity</th>
+                <td class="item">{{ item.item.name }}</td>
+                <td class="quantity">{{ item.quantity }} {{ item.item.unit_type }}</td>
             </tr>
-            {% for item in items %}
-                <tr>
-                    <td>{{ item.item.name }}</td>
-                    <td>{{ item.quantity }} {{ item.item.unit_type }}</td>
-                </tr>
-                <br>
-            {% endfor %}
-        </table>
-    </div>
-    <div>
-        <a href="{% url 'index' %}">Home</a>
-    </div>
+        {% endfor %}
+    </table>
 {% endblock %}

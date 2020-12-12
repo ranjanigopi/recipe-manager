@@ -4,18 +4,16 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
 
-    # index page options
-    path('ingredient', views.ingredient_menu, name="ingredient"),
-    path('recipe', views.recipe_menu, name="recipe"),
-
-    path('shopping-list', views.shoppinglist_menu, name="shopping-list"),
-    path('shopping-list/add/<int:recipe_id>', views.add_shoppinglist, name="add-shopping-list"),
-
-    # ingredient page options
+    # pantry page options
     path('pantry', views.pantry, name="pantry"),
     path('pantry/add', views.add_pantry_item, name="add-pantry-item"),
 
+    # shopping list page options
+    path('shopping-list', views.shoppinglist_menu, name="shopping-list"),
+    path('shopping-list/add/<int:recipe_id>', views.add_shoppinglist, name="add-shopping-list"),
+
     # recipe page options
+    path('recipe', views.recipe_menu, name="recipe"),
     path('recipe/all', views.all_recipe, name="all-recipe"),
     path('recipe/availability', views.available_recipe, name="available-recipe"),
     path('recipe/add', views.add_recipe, name="add-recipe"),

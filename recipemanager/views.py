@@ -16,10 +16,6 @@ def index(request):
     return render(request, "recipemanager/index.html")
 
 
-def ingredient_menu(request):
-    return render(request, "recipemanager/ingredient.html")
-
-
 def recipe_menu(request):
     return render(request, "recipemanager/recipe.html")
 
@@ -56,9 +52,9 @@ def shoppinglist_menu(request):
 
 
 def pantry(request):
-    item = Pantry.objects.all()
+    items = Pantry.objects.all()
     return render(request, "recipemanager/pantry.html", {
-        "items": item
+        "items": items
     })
 
 

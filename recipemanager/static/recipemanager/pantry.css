@@ -1,4 +1,29 @@
+h2 {
+    text-align: center;
+}
+
 .pantry {
-    border:1px solid black;
-    border-radius: 15px;
+    width: 100%;
+}
+
+.item {
+    text-align: right;
+}
+
+.quantity {
+    text-align: left;
+}
+
+.item,
+.quantity {
+    width: 50%;
+    padding: 5px;
+    border-bottom: 5px dotted #BDC8BE;
+}
+
+@media screen and (min-width: 750px) {
+    .item,
+    .quantity {
+        border-bottom-width: 2px;
+    }
 }
