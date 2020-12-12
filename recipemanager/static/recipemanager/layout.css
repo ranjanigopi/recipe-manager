@@ -47,17 +47,26 @@
     margin-bottom: 20px;
 }
 
+.action {
+    display: inline-block;
+    border: none;
+}
+
 .action + .action {
     margin-left: 10px;
 }
 
 .action.action-button {
-    display: inline-block;
     background-color: #857D48;
     border-radius: 4px;
     color: #FFFFFF;
-    box-shadow: 1px 3px 0 0 #565D5C;
     padding: 3px 15px;
+    box-shadow: 1px 3px 0 0 #565D5C;
+}
+
+.action.action-link {
+    background: none;
+    padding: 3px;
 }
 
 @media screen and (min-width: 750px) {

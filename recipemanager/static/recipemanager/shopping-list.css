@@ -1,12 +1,13 @@
-.shopping-list {
-    margin: 20px;
-}
-
 .shopping-list-item {
     display: grid;
-    grid-template-columns: 1fr 400px 200px 200px;
+    grid-template-areas:
+        "name"
+        "quantity"
+        "actions";
     padding: 10px 0;
+    grid-gap: 20px;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .shopping-list-item:not(:last-of-type) {
@@ -15,4 +16,38 @@
 
 .shopping-list-item .btn + .btn {
     margin-left: 10px;
+}
+
+.item-name {
+    grid-area: name;
+}
+
+.form-actions {
+    grid-area: actions;
+    text-align: right;
+}
+
+.quantity {
+    display: grid;
+    grid-area: quantity;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 120px;
+}
+
+@media screen and (min-width: 750px) {
+    .shopping-list-item {
+        grid-template-areas:
+            "name name"
+            "quantity actions";
+        grid-template-columns: 1fr 250px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .shopping-list-item {
+        grid-template-areas:
+            "name quantity actions";
+        grid-template-columns: 1fr 400px 250px;
+        margin-bottom: 0;
+    }
 }

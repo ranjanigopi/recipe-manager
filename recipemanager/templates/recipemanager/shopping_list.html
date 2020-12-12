@@ -5,20 +5,20 @@
         <a class="action action-button" href="{% url 'add-shopping-list-item' %}">Add Item</a>
     </div>
     <h2>Shopping List</h2>
-    <div class="shopping-list">
-        {% for shoppinglist in shoppinglists %}
-            <form class="shopping-list-item" method="post">
-                <span>{{ shoppinglist.item.name }}</span>
-                <div>
-                    <input type="text" name="quantity" value="{{ shoppinglist.quantity }}" required>
-                    {% include "recipemanager/units.html" %}
-                </div>
-                <button class="btn btn-primary" type="submit" name="action" value="buy">Item Bought</button>
-                <button class="btn btn-outline-primary" type="submit" name="action" value="remove">Remove Item</button>
-                {% csrf_token %}
-                <input type="hidden" name="name" value="{{ shoppinglist.item.name }}">
-                <input type="hidden" name="id" value="{{ shoppinglist.id }}">
-            </form>
-        {% endfor %}
-    </div>
+    {% for shoppinglist in shoppinglists %}
+        <form class="shopping-list-item" method="post">
+            <div class="item-name">{{ shoppinglist.item.name }}</div>
+            <div class="quantity">
+                <input type="text" name="quantity" value="{{ shoppinglist.quantity }}" required>
+                {% include "recipemanager/units.html" %}
+            </div>
+            <div class="form-actions">
+                <button class="action action-button" type="submit" name="action" value="buy">Item Bought</button>
+                <button class="action action-link" type="submit" name="action" value="remove">Remove Item</button>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="name" value="{{ shoppinglist.item.name }}">
+            <input type="hidden" name="id" value="{{ shoppinglist.id }}">
+        </form>
+    {% endfor %}
 {% endblock %}
