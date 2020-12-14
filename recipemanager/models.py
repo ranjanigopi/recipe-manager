@@ -45,6 +45,7 @@ class Recipe(models.Model):
 
 class Step(models.Model):
     recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE, null=True, blank=True, related_name="recipe_id")
+
     order = models.IntegerField(default=0)
     name = models.CharField(max_length=75)
     description = models.TextField(max_length=1000)
