@@ -26,7 +26,7 @@ ingredients available in the pantry. This application has three main scopes of m
 
 ### Class Diagram
 
-![Class Diagram](./recipe-manager.png)
+![Class Diagram](docs/recipe-manager.png)
 
 #### Item
 
